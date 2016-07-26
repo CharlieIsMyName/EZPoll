@@ -1,0 +1,33 @@
+doctype
+
+html
+  head
+    title Creating New Poll
+    include lib.jade
+    
+  body
+      div(class="container-fluid")
+       include header.jade
+       div(class="row")
+         div(class="signup-panel")
+           p(class="signup-prompt") Sign In
+           div(class="form")
+             form(action="/newpoll" method="post")
+               p(class="form-prompt") Title
+               input(type="text" name="title" class="long-input")
+               p(class="form-prompt") Options
+               input(type="text" name="option0" class="long-input")
+               input(type="text" name="option1" class="long-input")
+               div(id="options")
+               div(class="btn addbtn" onclick="addOption()") New Option
+               input(type="submit" value="Create Poll" class="submit-btn")
+               
+               -function errToElement(err){
+               -    if(err=="emptyTitle"){return "<div class='error-prompt'>Poll title cannot be empty!</div>"}
+               -    if(err=="noOption"){return "<div class='error-prompt'>The poll must have at least 2 options that are different!</div>"}
+               -    return "";
+               -}
+               
+               p !{errToElement(err)}
+script(src="js/init.js")
+               

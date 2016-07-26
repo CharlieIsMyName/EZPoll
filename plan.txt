@@ -1,0 +1,25 @@
+plans for voting app:
+
+3 pages: main page, login page, and poll page
+
+2 mongo collections: login collection and pool collection. polls are identified by the unique _id in mongodb
+		login = username,password,mypolls:[_id]
+		poll = name,optionAndVotes:[{option,[voter's ip]}] 
+		
+login system:
+once submitted username and password, if anything match found, a flag on the back end server will be up and all the user data will be retrieved to the server for later use. when logged off, flag is down and user data are destried
+
+backend: route to the corresponding poll by parsing url(_id is passed in using jade)
+
+front end: 
+main page: jade+react+SCSS
+login page: jade+SCSS
+poll page: jade+react+d3+SCSS
+
+
+things needs to get ready:
+webpack
+babel
+scss
+react
+

@@ -1,0 +1,16 @@
+doctype
+
+html
+  head
+    title Ezpoll - A simple voting web app!
+    include lib.jade
+    
+  body
+      div(class="container-fluid")
+        include header.jade
+        
+        each p in pollList
+          a(class="pollListLink" href="/poll?id="+p._id)
+            div(class="pollListElement")=p.title
+          
+script(src="js/init.js")

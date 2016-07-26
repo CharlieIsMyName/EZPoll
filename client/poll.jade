@@ -1,0 +1,43 @@
+doctype
+
+html
+  head
+    title Ezpoll - A simple voting web app!
+    include lib.jade
+    script var poll=!{JSON.stringify(poll)}
+    script(src="js/drawChart.js")
+    
+  body
+      div(class="container-fluid")
+        include header.jade
+    
+        div(class="choosePanel")
+          div(class="pollTitle") #{poll.title}
+          form(action="/poll" method="post")
+            input(type="text" style="display:none" name="id" value="#{poll['_id']}") 
+            select(name="answer" class="options")
+                each op in poll.optionList
+                    option=op.option
+            br
+            if user
+              div(class="text-center") or add new option
+              input(type="text" name="newoption" class="options")
+              
+            input(type="submit" value="Submit" class="submit-btn")
+          a(id="share" target="_blank")
+            button(class="share-btn") Share On Twitter
+          if isOwner==true
+            a(href="#{'/delete?id='+poll['_id']}")
+              button(class="delete-btn") Delete Poll
+          
+          -function errToElement(err){
+          -    if(err=="invalid"){return "<div class='error-prompt'>Something is wrong... Please try again!</div>"}
+          -    if(err=="voted"){return "<div class='error-prompt'>You have already voted!</div>"}
+          -    return "";
+          -}
+                 
+          div !{errToElement(err)}
+        
+        div(id="resultPanel" class="resultPanel")
+        script
+          $("#share").attr("href",'https://twitter.com/intent/tweet?text='+'check out my poll at: '+window.location.href);
