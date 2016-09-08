@@ -11,5 +11,7 @@ This app require the mongodb to contain two collections - "ezpoll-login" and "ez
 
 #Project information
 
--Currently depolyed on ezpoll.herokuapp.com
+-Currently depolyed on https://ezpoll.herokuapp.com
+
+
 -Some original project requirement: https://www.freecodecamp.com/challenges/build-a-voting-app
